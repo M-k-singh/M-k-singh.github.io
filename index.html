@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Professional Resume</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f3f4f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --accent: #fbbf24;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            background-color: #f9fafb;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 6px var(--shadow);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 4px 6px var(--shadow);
+            background-color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .profile-placeholder {
+            font-size: 60px;
+            color: var(--primary);
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .title {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+        
+        .nav-item {
+            padding: 10px 15px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .nav-item:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Experience Section */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 30px;
+            width: 2px;
+            height: calc(100% + 30px);
+            background-color: var(--secondary);
+            z-index: 1;
+        }
+        
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin-top: 6px;
+            z-index: 2;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-company {
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            color: var(--text);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            margin-bottom: 30px;
+        }
+        
+        .skill-category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-item {
+            background-color: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .skill-bar-container {
+            margin-bottom: 15px;
+        }
+        
+        .skill-bar-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .skill-bar-name {
+            font-weight: 500;
+        }
+        
+        .skill-bar-percentage {
+            color: var(--text-light);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-bar-fill {
+            height: 100%;
+            background-color: var(--primary);
+        }
+        
+        /* Education Section */
+        .education-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .education-item {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+        
+        .education-degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .education-institution {
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .education-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .education-description {
+            color: var(--text);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .project-tag {
+            background-color: var(--secondary);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .project-description {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Testimonials Section */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .testimonial-info h4 {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-button {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--accent);
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 20px 1fr;
+            }
+            
+            .projects-grid, .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-image">
+                    <div class="profile-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <h1 class="name">Your Name</h1>
+                <p class="title">Professional Title</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>email@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>City, Country</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-list">
+                    <a href="#about" class="nav-item">About</a>
+                    <a href="#experience" class="nav-item">Experience</a>
+                    <a href="#skills" class="nav-item">Skills</a>
+                    <a href="#education" class="nav-item">Education</a>
+                    <a href="#projects" class="nav-item">Projects</a>
+                    <a href="#testimonials" class="nav-item">Testimonials</a>
+                    <a href="#contact" class="nav-item">Contact</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2 class="section-title"><i class="fas fa-user"></i> About Me</h2>
+                <div class="about-content">
+                    <p>Welcome to my professional portfolio! I am a passionate [Your Profession] with [X years] of experience specializing in [Your Specializations]. My approach combines creative problem-solving with technical expertise to deliver exceptional results.</p>
+                    <p>Throughout my career, I have successfully [brief overview of achievements]. I thrive in collaborative environments and am constantly seeking opportunities to expand my knowledge and skills.</p>
+                    <p>When I'm not working, you can find me [personal interests/hobbies]. I believe in [personal philosophy or work ethic] and bring this mindset to every project I undertake.</p>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section">
+                <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Senior Position Title</h3>
+                            <p class="timeline-company">Company Name</p>
+                            <p class="timeline-date">January 2021 - Present</p>
+                            <p class="timeline-description">
+                                • Led a team of [X] professionals in delivering [specific projects/services]<br>
+                                • Increased department efficiency by [X%] through implementation of [strategy/tool]<br>
+                                • Collaborated with cross-functional teams to achieve [specific goal]<br>
+                                • Managed budget of $[X] while ensuring all deliverables met quality standards
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Mid-Level Position Title</h3>
+                            <p class="timeline-company">Previous Company Name</p>
+                            <p class="timeline-date">March 2018 - December 2020</p>
+                            <p class="timeline-description">
+                                • Developed and implemented [specific strategy/project]<br>
+                                • Coordinated with [specific departments/teams] to streamline [processes]<br>
+                                • Recognized for [specific achievement or award]<br>
+                                • Successfully completed [X] projects ahead of schedule and under budget
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Entry-Level Position Title</h3>
+                            <p class="timeline-company">First Company Name</p>
+                            <p class="timeline-date">June 2016 - February 2018</p>
+                            <p class="timeline-description">
+                                • Assisted in [specific responsibilities]<br>
+                                • Contributed to [specific project/initiative]<br>
+                                • Learned and applied [specific skills/knowledge]<br>
+                                • Participated in [company training/professional development]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <h2 class="section-title"><i class="fas fa-code"></i> Skills & Expertise</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Technical Skills</h3>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-title">
+                                <span class="skill-bar-name">Skill 1</span>
+                                <span class="skill-bar-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-title">
+                                <span class="skill-bar-name">Skill 2</span>
+                                <span class="skill-bar-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-title">
+                                <span class="skill-bar-name">Skill 3</span>
+                                <span class="skill-bar-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Professional Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Project Management</span>
+                            <span class="skill-item">Team Leadership</span>
+                            <span class="skill-item">Strategic Planning</span>
+                            <span class="skill-item">Problem Solving</span>
+                            <span class="skill-item">Communication</span>
+                            <span class="skill-item">Time Management</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Software & Tools</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Tool 1</span>
+                            <span class="skill-item">Tool 2</span>
+                            <span class="skill-item">Tool 3</span>
+                            <span class="skill-item">Tool 4</span>
+                            <span class="skill-item">Tool 5</span>
+                            <span class="skill-item">Tool 6</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Languages</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">English (Native)</span>
+                            <span class="skill-item">Spanish (Fluent)</span>
+                            <span class="skill-item">French (Intermediate)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="section">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="education-list">
+                    <div class="education-item">
+                        <h3 class="education-degree">Master's Degree in [Field]</h3>
+                        <p class="education-institution">University Name</p>
+                        <p class="education-date">2014 - 2016</p>
+                        <p class="education-description">Graduated with honors. Specialized in [specific area]. Thesis: "[Thesis Title]".</p>
+                    </div>
+
+                    <div class="education-item">
+                        <h3 class="education-degree">Bachelor's Degree in [Field]</h3>
+                        <p class="education-institution">University Name</p>
+                        <p class="education-date">2010 - 2014</p>
+                        <p class="education-description">Graduated cum laude. Active member of [clubs/organizations]. Recipient of [scholarship/award].</p>
+                    </div>
+
+                    <div class="education-item">
+                        <h3 class="education-degree">Relevant Certifications</h3>
+                        <p class="education-description">
+                            • [Certification Name] - [Issuing Organization], [Year]<br>
+                            • [Certification Name] - [Issuing Organization], [Year]<br>
+                            • [Certification Name] - [Issuing Organization], [Year]
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-laptop-code" style="font-size: 48px; color: #2563eb;"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Project Title 1</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Tag 1</span>
+                                <span class="project-tag">Tag 2</span>
+                                <span class="project-tag">Tag 3</span>
+                            </div>
+                            <p class="project-description">A brief description of the project, its objectives, your role, and the outcome. Highlight key technologies or methodologies used.</p>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-chart-line" style="font-size: 48px; color: #2563eb;"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Project Title 2</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Tag 1</span>
+                                <span class="project-tag">Tag 2</span>
+                            </div>
+                            <p class="project-description">A brief description of the project, its objectives, your role, and the outcome. Highlight key technologies or methodologies used.</p>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-mobile-alt" style="font-size: 48px; color: #2563eb;"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Project Title 3</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Tag 1</span>
+                                <span class="project-tag">Tag 2</span>
+                                <span class="project-tag">Tag 3</span>
+                            </div>
+                            <p class="project-description">A brief description of the project, its objectives, your role, and the outcome. Highlight key technologies or methodologies used.</p>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="section">
+                <h2 class="section-title"><i class="fas fa-quote-right"></i> Testimonials</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Working with [Your Name] was an exceptional experience. Their expertise in [specific skill/area] significantly contributed to the success of our project. They consistently demonstrated professionalism, creativity, and dedication."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">JD</div>
+                            <div class="testimonial-info">
+                                <h
